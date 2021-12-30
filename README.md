@@ -9,7 +9,7 @@ table of contents
    - [Dataset](#dataset)
    - [Feature-Engineer](#feature-engineer)
    - [Visualizations](#visualizations)
-   - * [Summary-statistics](#summary statistics)
+   - * [Summary-statistics](#summary-statistics)
    - * [kekw](#kekw)
    - [Model-Tuning](#model-tuning)
    - [Results](#results)
