@@ -7,10 +7,11 @@ table of contents
    
    - [Background](#background)
    - [Dataset](#dataset)
-   - [Feature-Engineer](#feature-engineer)
    - [Visualizations](#visualizations)
-   - * [Summary-statistics](#summary-statistics)
+   - * [Summary-Statistics](#summary-statistics)
    - * [kekw](#kekw)
+   - [Feature-Engineer](#feature-engineer)
+   - [Outlier-Detection](#outlier-detection)
    - [Model-Tuning](#model-tuning)
    - [Results](#results)
 
