@@ -1,4 +1,4 @@
-# BodyPerformance EDA and Classification Analysis
+# Body Performance Visualization and Classification Analysis
 An Exploratory Data Analysis and Classification of Body Performance Data
 
 
