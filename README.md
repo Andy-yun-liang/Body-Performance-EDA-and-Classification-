@@ -4,11 +4,15 @@ An Exploratory Data Analysis and Classification of Body Performance Data
 
 table of contents
 ### Table of Contents
-   - [Abstract](#abstract)
-   - [Purpose](#purpose)
+   
+   - [Background](#background)
    - [Dataset](#dataset)
-   - [Methods](#methods)
-   - [Conclusion](#conclusion)
+   - [Feature-Engineer](#feature-engineer)
+   - [Visualizations](#visualizations)
+   - * [Summary statistics](#summary statistics)
+   - * [kekw](#kekw)
+   - [Model-Tuning](#model-tuning)
+   - [Results](#results)
 
 
 
