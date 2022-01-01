@@ -25,13 +25,12 @@ This dataset is found at https://www.kaggle.com/kukuroo3/body-performance-data
 
 ## Classification Results
 
-```
+
 | Model | Accuracy | ROC_AUC |
 | :---         |     :---:      |          ---: |
 | LightGBM   | git status     | git status    |
 | XGB     | git diff       | git diff      |
 
-```
 
 
 
