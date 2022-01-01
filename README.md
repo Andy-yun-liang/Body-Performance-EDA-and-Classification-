@@ -26,15 +26,16 @@ This dataset is found at https://www.kaggle.com/kukuroo3/body-performance-data
 ## Classification Results
 
 
-| Model | Accuracy | ROC_AUC |
-| :---         |     :---:      |          ---: |
-| LightGBM   | git status     | git status    |
-| XGB     | git diff       | git diff      |
-
-
-asdasd
-
-
+| Model | ROC_AUC | Accuracy |
+| :---  | :---:    |  :---:  |
+| LightGBM   | 0.922    |  0.757|
+| XGB     | 0.921       |  0.751|
+| Random Forest | 0.919 |0.749|
+|MLP Neural Net| 0.916|0.738| 
+|SVM RBF| 0.886| 0.704|
+|Multinomial | 0.846| 0.613|
+|KNN | 0.845| 0.603|
+|LDA | 0.841| 0.595|
 
 
 
