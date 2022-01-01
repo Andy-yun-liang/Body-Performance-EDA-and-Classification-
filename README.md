@@ -10,7 +10,7 @@
    - * [Observations](#observations)
    - [Feature-Engineer](#feature-engineer)
    - [Parameter-Optimization](#parameter-optimization)
-   - [Classification results](#results)
+   - [Classification Results](#results)
    
 
 
@@ -23,7 +23,16 @@ The objective of this project is to become more comfortable with multi-label cla
 This dataset is found at https://www.kaggle.com/kukuroo3/body-performance-data 
 
 
-## Classification results
+## Classification Results
+
+```
+| Model | Accuracy | ROC_AUC |
+| :---         |     :---:      |          ---: |
+| LightGBM   | git status     | git status    |
+| XGB     | git diff       | git diff      |
+
+```
+
 
 
 
