@@ -8,7 +8,8 @@
    - * [Summary-Statistics](#summary-statistics)
    - * [Observations](#observations)
    - [Feature-Engineer](#feature-engineer)
-   - [Parameter-Optimization](#parameter-optimization)
+   - [Model-Preprocessing](#model-preprocessing)
+   - [Model Building](#model-building)
    - [Classification Results](#results)
    
 
@@ -27,7 +28,20 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 
 
-## Parameter Optimization
+## Model Preprocessing
+
+For model preprocessing, we removed low variance features and highly correlated features. Then scaled the predictors variables to mean 0 and standard deviation of 1.
+
+Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
+
+Highly correlated features are removed because 
+
+Scaling is done so that distance based methods don't produce biased results
+
+
+## Model Building
+
+
 
 
 
