@@ -23,6 +23,15 @@ The body performance dataset is gathered by Seoul Olympic COmmemorative Sports P
 In this classification analysis, we will be using a preprocessed version of the dataset found on https://www.kaggle.com/kukuroo3/body-performance-data.
 
 
+## Visualizations 
+
+
+
+## Parameter Optimization
+
+
+
+
 
 ## Classification Results
 
