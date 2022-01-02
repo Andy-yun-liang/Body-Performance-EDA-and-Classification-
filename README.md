@@ -125,6 +125,11 @@ final_XGB_fit %>% collect_predictions(parameters = best_XGB_params) %>% roc_curv
 #plot confusion matrix
 (XGB_test_preds = final_XGB_fit %>% collect_predictions() %>% conf_mat(truth = class, estimate = .pred_class))
 ```
+![xgb_metrics](https://user-images.githubusercontent.com/73871814/147873769-9dc91b99-9fc4-408e-8b0c-e6f844f9f5e8.PNG)
+
+![xgb_roc_auc_plot](https://user-images.githubusercontent.com/73871814/147873777-6c46dcf6-eb72-487b-bc08-168a88ffac2d.PNG)
+
+![xgb_confusion_mat](https://user-images.githubusercontent.com/73871814/147873785-a508759a-6620-4217-b578-89397cf828cd.PNG)
 
 
 
