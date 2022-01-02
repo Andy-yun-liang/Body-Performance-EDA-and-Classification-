@@ -33,8 +33,8 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 
 ## Model Preprocessing
-Now that are dataset is ready for model building, we split the dataset into train and test set. The purpose of this step is help us evaluate the model performance.
-
+Now that are dataset is ready for model building, we split the dataset into train and test set. 
+The testing set will be used for model evaluation after the tuning process.
 ```
 set.seed(123)
 split = initial_split(df,prop = 0.7)
