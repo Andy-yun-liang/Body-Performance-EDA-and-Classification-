@@ -73,8 +73,6 @@ XGBoost_mod = boost_tree( mode = "classification",
                       sample_size = tune(),
                       learn_rate = tune()
                       )
-
-
 XGB_grid = grid_max_entropy(finalize(mtry(),train_data),
                             learn_rate(),
                             sample_size = sample_prop(),
@@ -82,13 +80,16 @@ XGB_grid = grid_max_entropy(finalize(mtry(),train_data),
                             tree_depth(),
                             loss_reduction(),
                             size=25)
-
-
 ```
 
-Next, we define the work flow.
+Next, we define the work flow and use the tune_grid function to tune the parameters
+
 ```
 XGB_wf = workflow() %>% add_recipe(dat_recipe) %>% add_model(XGBoost_mod)
+XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
+                                  control = control_grid(save_pred=TRUE,save_workflow = TRUE),
+                                  grid = XGB_grid
+                                  )
 ```
 
 
