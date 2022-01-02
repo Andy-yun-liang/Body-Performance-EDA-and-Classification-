@@ -34,7 +34,7 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ## Model Preprocessing
 
-For model preprocessing, we removed low variance features and highly correlated features. Then scaled the predictors variables to mean 0 and standard deviation of 1.
+In this step, we removed low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1.
 
 Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
 
