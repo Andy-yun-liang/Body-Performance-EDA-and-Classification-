@@ -23,7 +23,7 @@
 
 The objective of this project is to become more comfortable with multi-label classification with the tidymodels framework in R(Rstudio) and data visualization with the ggplot2 package and Tableau.
 
-The body performance dataset is gathered by Seoul Olympic COmmemorative Sports Promotion Agency and maintained by the Nationl Sports Promotion Agency, it can be found on https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=ace0aea7-5eee-48b9-b616-637365d665c1. 
+The body performance dataset is gathered by Seoul Olympic Commemorative Sports Promotion Agency and maintained by the Nationl Sports Promotion Agency, it can be found on https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=ace0aea7-5eee-48b9-b616-637365d665c1. 
 
 In this classification analysis, we will be using a preprocessed version of the dataset found on https://www.kaggle.com/kukuroo3/body-performance-data.
 
@@ -91,6 +91,32 @@ XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
                                   grid = XGB_grid
                                   )
 ```
+
+To get the predictions, we need to finalize a model based on the "best" parameters that fits our needs then fit the split we initally created in the train-test split step
+```
+#choosing the best parameters based on the roc_auc metric
+best_XGB_params = XGB_tune_res %>% select_best(metric= "roc_auc")
+
+#finalizing the model
+final_XGB_mod = XGB_wf %>% finalize_workflow(best_XGB_params)
+
+#fitting the model to the testing set
+final_XGB_fit  = final_XGB_mod %>% last_fit(split)
+```
+
+With our final model, we can now collect the results and plot the roc_auc curve and confusion matrix
+```
+#collect our accuracy and roc_auc score
+final_XGB_fit %>% collect_metrics()
+
+#auc plot
+final_XGB_fit %>% collect_predictions(parameters = best_XGB_params) %>% roc_curve(class,.pred_A:.pred_D) %>% mutate(model = "XGB") %>% autoplot()
+
+#plot confusion matrix
+(XGB_test_preds = final_XGB_fit %>% collect_predictions() %>% conf_mat(truth = class, estimate = .pred_class))
+```
+
+
 
 ## Classification Results
 
