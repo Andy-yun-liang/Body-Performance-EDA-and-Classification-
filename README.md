@@ -42,7 +42,16 @@ Highly correlated features are removed because
 
 Scaling is done so that distance based methods don't produce biased results
 
+```
+#data preprocessing recipe: 
+dat_recipe = recipe(class~.,data=train_data) %>% 
+                     step_nzv(all_predictors()) %>% 
+                        step_corr(all_numeric(),-all_outcomes()) %>% 
+                           step_normalize(all_predictors()) %>% 
+                           prep()
 
+
+```
 ## Model Building
 
 
