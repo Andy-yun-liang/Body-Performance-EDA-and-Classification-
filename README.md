@@ -59,7 +59,6 @@ dat_recipe = recipe(class~.,data=train_data) %>%
 
 ## Classification Results
 
-
 | Model | ROC_AUC | Accuracy |
 | :---  | :---:    |  :---:  |
 | LightGBM   | 0.922    |  0.757|
@@ -71,5 +70,6 @@ dat_recipe = recipe(class~.,data=train_data) %>%
 |KNN | 0.845| 0.603|
 |LDA | 0.841| 0.595|
 
+![roc_auc](https://user-images.githubusercontent.com/73871814/147862865-dc3babae-c1dc-4988-a288-d87125322b88.PNG)
 
 
