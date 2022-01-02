@@ -38,7 +38,7 @@ For model preprocessing, we removed low variance features and highly correlated 
 
 Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
 
-Highly correlated features are removed because 
+Highly correlated features are removed because we don't want multicollinearity in the models even though some models such as the random forest is relatively resistant. Multicollinearity can make our model very variable because it increases the variance of feature's coefficients.
 
 Scaling is done so that distance based methods don't produce biased results
 
