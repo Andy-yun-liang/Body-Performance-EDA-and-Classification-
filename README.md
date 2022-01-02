@@ -105,3 +105,4 @@ XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
 |KNN | 0.845| 0.603|
 |LDA | 0.841| 0.595|
 
+(CatBoost and Ensembles on progress..)
