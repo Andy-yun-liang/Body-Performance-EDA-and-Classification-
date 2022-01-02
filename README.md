@@ -131,7 +131,7 @@ final_XGB_fit %>% collect_predictions(parameters = best_XGB_params) %>% roc_curv
 
 ![xgb_confusion_mat](https://user-images.githubusercontent.com/73871814/147873785-a508759a-6620-4217-b578-89397cf828cd.PNG)
 
-
+To see the rest of the tuning process of the models used, check the appendix!
 
 ## Classification Results
 
