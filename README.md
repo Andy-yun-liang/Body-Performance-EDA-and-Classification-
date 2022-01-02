@@ -34,7 +34,6 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ## Model Preprocessing
 
-### XGB Example
 In this step, we removed low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1.
 
 Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
@@ -62,6 +61,7 @@ my_folds = bake(dat_recipe,new_data = train_data) %>% vfold_cv(v=5)
 
 With the defined folds, we can now start building some classifiers. In this section, I will give a run down of how these models are setup. 
 
+### XGB Example
 First, define the model and choose the paramaters to tune. Tunable paramaters depend on the engine used.
 ```
 XGBoost_mod = boost_tree( mode = "classification",
