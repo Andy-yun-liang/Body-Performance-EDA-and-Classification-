@@ -70,6 +70,3 @@ dat_recipe = recipe(class~.,data=train_data) %>%
 |KNN | 0.845| 0.603|
 |LDA | 0.841| 0.595|
 
-![roc_auc](https://user-images.githubusercontent.com/73871814/147862865-dc3babae-c1dc-4988-a288-d87125322b88.PNG)
-
-
