@@ -92,7 +92,6 @@ XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
                                   )
 ```
 
-
 ## Classification Results
 
 | Model | ROC_AUC | Accuracy |
