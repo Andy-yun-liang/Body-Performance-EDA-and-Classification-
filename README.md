@@ -1,6 +1,7 @@
 # Body Performance Visualization and Classification Analysis
 
-![Running-science-©-adimas---Fotolia-com_1](https://user-images.githubusercontent.com/73871814/147862607-72c88ce6-7f83-4dc5-a96f-e26baf2905c6.jpg |width=100 ) 
+![resize-1641081670269426773RunningscienceadimasFotoliacom1](https://user-images.githubusercontent.com/73871814/147862696-5c3a4ba9-348f-4efb-94e3-27a8ec4fa92e.jpg)
+
 
 ## Table of Contents
    
