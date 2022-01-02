@@ -33,6 +33,14 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 
 ## Model Preprocessing
+Now that are dataset is ready for model building, we split the dataset into train and test set. The purpose of this step is help us evaluate the model performance.
+
+```
+set.seed(123)
+split = initial_split(df,prop = 0.7)
+train_data = training(split)
+test_data = testing(split)
+```
 
 In this step, we removed low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1.
 
@@ -49,6 +57,7 @@ dat_recipe = recipe(class~.,data=train_data) %>%
                            step_normalize(all_predictors()) %>% 
                            prep()
 ```
+
 ## Model Building
 
 Now that the data is preprocessed, we set up the folds.
