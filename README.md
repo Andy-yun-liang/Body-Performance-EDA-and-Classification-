@@ -51,10 +51,45 @@ dat_recipe = recipe(class~.,data=train_data) %>%
 ```
 ## Model Building
 
+Now that the data is preprocessed, we set up the folds.
+
+```
+set.seed(123)
+my_folds = bake(dat_recipe,new_data = train_data) %>% vfold_cv(v=5)
+
+```
+
+With the defined folds, we can now start building some classifiers. In this section, I will give a run down of how these models are setup. 
+
+First, define the model and choose the paramaters to tune. Tunable paramaters depend on the engine used.
+```
+XGBoost_mod = boost_tree( mode = "classification",
+                      engine = "xgboost",
+                      mtry = tune(),
+                      trees = 800,
+                      tree_depth = tune(),
+                      min_n = tune(),
+                      loss_reduction = tune(),
+                      sample_size = tune(),
+                      learn_rate = tune()
+                      )
 
 
+XGB_grid = grid_max_entropy(finalize(mtry(),train_data),
+                            learn_rate(),
+                            sample_size = sample_prop(),
+                            min_n(),
+                            tree_depth(),
+                            loss_reduction(),
+                            size=25)
 
 
+```
+
+Next, we define the work flow.
+```
+XGB_wf = workflow() %>% add_recipe(dat_recipe) %>% add_model(XGBoost_mod)
+```
 
 
 ## Classification Results
