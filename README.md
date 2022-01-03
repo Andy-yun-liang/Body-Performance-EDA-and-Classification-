@@ -31,8 +31,11 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
+Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
 ![image](https://user-images.githubusercontent.com/95319198/147901417-442ea446-0790-41be-94b7-7ec1fb62524a.png)
 
+Scatterplot of BMI versus excercises between men and women within the four classes. Men generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
+https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
 
 
