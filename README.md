@@ -50,7 +50,7 @@ We can see that as we age, more individuals have blood pressure problems.
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
-![image](https://user-images.githubusercontent.com/95319198/147901417-442ea446-0790-41be-94b7-7ec1fb62524a.png)
+![image](https://user-images.githubusercontent.com/95319198/147908733-3afb1bb0-044b-4237-88c6-5e260e372b88.png)
 
 Hexplot of blood pressure of the individuals in the database. It is observed that individuals with a lower blood pressure levels have a lower BMI.
 ![image](https://user-images.githubusercontent.com/95319198/147903680-e3b198e9-447e-463f-bd47-a6e8c9950ebd.png)
