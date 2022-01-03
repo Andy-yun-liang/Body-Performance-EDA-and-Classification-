@@ -11,9 +11,10 @@
    - [Visualizations](#visualizations)
    - * [Summary-Statistics](#summary-statistics)
    - * [Observations](#observations)
-   - [Feature-Engineer](#feature-engineer)
    - [Model-Preprocessing](#model-preprocessing)
    - [Model Building](#model-building)
+   - * [XGBoost Example](#xgb)
+   - * [SVM RBF Example](#svm)
    - [Model Results](#result)
    
 
@@ -34,6 +35,7 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ## Model Preprocessing
 Now that are dataset is ready for model building, we split the dataset into train and test set. 
+
 The testing set will be used for model evaluation after the tuning process.
 ```r
 set.seed(123)
@@ -42,13 +44,13 @@ train_data = training(split)
 test_data = testing(split)
 ```
 
-In this step, we removed low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1.
+In this step, we will be using tidymodel's recipe to remove low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1. This processed is applied to the train set, and the test set transformation that follow these procedure will be automatically applied when we use the predict function.
 
-Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
+1.Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
 
-Highly correlated features are removed because we don't want multicollinearity in the models even though some models such as the random forest is relatively resistant. Multicollinearity can make our model very variable because it increases the variance of feature's coefficients.
+2.Highly correlated features are removed because we don't want multicollinearity in the models even though some models such as the random forest is relatively resistant. Multicollinearity can make our model very variable because it increases the variance of feature's coefficients.
 
-Scaling is done so that distance based methods don't produce biased results
+3.Scaling is done so that distance based methods don't produce biased results
 
 ```r
 dat_recipe = recipe(class~.,data=train_data) %>% 
@@ -210,7 +212,7 @@ final_svmRBF_fit %>% collect_predictions(parameters = best_svmRBF_params) %>% ro
 To see the rest of the tuning process for the other models used, check the appendix!
 
 ## Model Results
-kek12312412
+
 ### Model performance summary
 
 | Model | ROC_AUC | Accuracy |
