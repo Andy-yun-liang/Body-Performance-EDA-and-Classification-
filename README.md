@@ -8,15 +8,13 @@
 ## Table of Contents
    
 * [Background](#background)
+* [Model Summary](#model-summary)
+
 * [Visualizations](#visualizations)
-   * [Summary Statistics](#summary-statistics)
-   * [Observations](#observations)
 * [Model-Preprocessing](#model-preprocessing)
 * [Model Building](#model-building)
    * [XGBoost Model](#xgboost-model)
    * [SVM RBF Model](#svm-rbf-model)
-* [Model Results](#model-results)
-
 
 ## Background
 
@@ -26,6 +24,22 @@ The body performance dataset is gathered by Seoul Olympic Commemorative Sports P
 
 In this classification analysis, we will be using a preprocessed version of the dataset found on https://www.kaggle.com/kukuroo3/body-performance-data.
 
+## Model Summary
+
+### Model performance summary
+
+| Model | ROC_AUC | Accuracy |
+| :---  | :---:    |  :---:  |
+| LightGBM   | 0.922    |  0.757|
+| XGB     | 0.921       |  0.751|
+| Random Forest | 0.919 |0.749|
+|MLP Neural Net| 0.916|0.738| 
+|SVM RBF| 0.886| 0.704|
+|Multinomial | 0.846| 0.613|
+|KNN | 0.845| 0.603|
+|LDA | 0.841| 0.595|
+
+(CatBoost and Ensembles on progress..)
 
 ## Visualizations 
 
@@ -229,19 +243,4 @@ final_svmRBF_fit %>% collect_predictions(parameters = best_svmRBF_params) %>% ro
 
 To see the rest of the tuning process for the other models used, check the appendix!
 
-## Model Results
 
-### Model performance summary
-
-| Model | ROC_AUC | Accuracy |
-| :---  | :---:    |  :---:  |
-| LightGBM   | 0.922    |  0.757|
-| XGB     | 0.921       |  0.751|
-| Random Forest | 0.919 |0.749|
-|MLP Neural Net| 0.916|0.738| 
-|SVM RBF| 0.886| 0.704|
-|Multinomial | 0.846| 0.613|
-|KNN | 0.845| 0.603|
-|LDA | 0.841| 0.595|
-
-(CatBoost and Ensembles on progress..)
