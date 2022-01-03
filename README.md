@@ -211,6 +211,8 @@ To see the rest of the tuning process for the other models used, check the appen
 
 ## Model Results
 
+### Model performance summary
+
 | Model | ROC_AUC | Accuracy |
 | :---  | :---:    |  :---:  |
 | LightGBM   | 0.922    |  0.757|
