@@ -32,7 +32,6 @@ In this classification analysis, we will be using a preprocessed version of the 
 Count of Female vs Male in the database. There are much more males in the database with a ratio of 2 male: 1 female.
 ![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
 
-Gif visualizing the type of blood pressure that individuals of a certain age in the dataset have. 
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
@@ -51,8 +50,8 @@ Hexplot of weight vs height by age. It is observed that most overweight individu
 Looking at these boxplots of the classes with each of the response variables, we can see that there is a lot of outliers. 
 ![image](https://user-images.githubusercontent.com/95319198/147904406-8b429693-df47-49eb-9943-a183ae006a59.png)
 
-Looking at distribution plots, we can see that a gaussian distribution. 
-![image](https://user-images.githubusercontent.com/95319198/147906919-6b88dcc8-4be1-4b38-8183-cbcc83a21d14.png)
+
+
 
 ## Model Preprocessing
 Now that are dataset is ready for model building, we split the dataset into train and test set. 
@@ -93,7 +92,7 @@ my_folds = bake(dat_recipe,new_data = train_data) %>% vfold_cv(v=5)
 
 With the defined folds, we can now start building some classifiers. In this section, I will give a run down of how these models are setup. 
 
-### XGBoost Example
+### XGBoost Model
 First, define the model and choose the paramaters to tune. Tunable paramaters depend on the engine used.
 ```r
 XGBoost_mod = boost_tree( mode = "classification",
@@ -155,10 +154,8 @@ final_XGB_fit %>% collect_predictions(parameters = best_XGB_params) %>% roc_curv
 ![xgb_confusion_mat](https://user-images.githubusercontent.com/73871814/147873785-a508759a-6620-4217-b578-89397cf828cd.PNG)
 
 
-### SVM RBF Example
+### SVM RBF Model
 
-
-#SVM rbf model
 
 Initializing the model and the workflow
 ```r
