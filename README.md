@@ -65,8 +65,14 @@ df$bmi = (df$weight/(df$height)^2)*10000
 
 ## Visualizations 
 
-we observe that there are more male than female participants
-![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
+Now that the data types are correct, we can start plotting some visualizations to better understand the dataset
+
+```r
+df %>% mutate(gender = factor(gender)) %>% 
+   ggplot(aes(class)) + geom_bar(aes(fill=gender)) + ggtitle("Response Variable by Gender and Class")
+```
+From this plot, we see that there are more male than female participants and that the classes are balanced 
+![response_var_by_gc](https://user-images.githubusercontent.com/73871814/147992729-b45cf772-099f-431e-978e-3a9fb43ca3ae.PNG)
 
 
 We can see that as we age, individuals are more likely to have blood pressure problems.
