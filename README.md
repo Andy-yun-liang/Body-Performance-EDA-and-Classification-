@@ -97,7 +97,7 @@ Looking at these boxplots of the classes with each of the response variables, we
 Looking at these distributions, we can see that all the variables follow a Gaussian distribution.
 ![image](https://user-images.githubusercontent.com/95319198/147908177-93482efc-763a-4819-8490-9cfbda932616.png)
 
-There are many variables we need to be vary of some of which are: systolic, diastolic, bodyfat, situps, broad_jump, and height. We will deal with the highly correlated variables with the recipe in the model preprocessing step.  
+There are many variables we need to be vary of such as: systolic and diastolic, bodyfat and situps, broad_jump and height, and more. We will deal with the highly correlated variables with the recipe in the model preprocessing step.  
 ![image](https://user-images.githubusercontent.com/95319198/147912014-f1dd08c8-81b9-45f8-98c1-ed7968bb7f92.png)
 
 Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
