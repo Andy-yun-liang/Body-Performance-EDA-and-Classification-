@@ -47,6 +47,7 @@ https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 Hexplot of weight vs height by age. It is observed that most overweight individuals are of young age (<30).
 ![image](https://user-images.githubusercontent.com/95319198/147903280-0658e262-dd75-4a98-9b36-b18770b45f6f.png)
 
+Looking at these boxplots of the classes with each of the response variables, we can see that there is a lot of outliers. 
 ![image](https://user-images.githubusercontent.com/95319198/147904406-8b429693-df47-49eb-9943-a183ae006a59.png)
 
 
