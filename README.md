@@ -29,6 +29,7 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ## Visualizations 
 
+![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
 
 ## Model Preprocessing
