@@ -7,15 +7,15 @@
 
 ## Table of Contents
    
-* [Background](#1-background)
-* [Visualizations](#2-visualizations)
-   * [Summary-Statistics](#2.1-summary-statistics)
-   * [Observations](#2.2-observations)
-* [Model-Preprocessing](#3-model-preprocessing)
-* [Model Building](#4-model-building)
-   * [XGBoost Model](#4.1-xgb)
-   * [SVM RBF Model](#4.2-svm)
-* [Model Results](#5-result)
+* [Background](#background)
+* [Visualizations](#visualizations)
+   * [Summary Statistics](#summary statistics)
+   * [Observations](#observations)
+* [Model-Preprocessing](#model-preprocessing)
+* [Model Building](#model building)
+   * [XGBoost Model](#xgboost model)
+   * [SVM RBF Model](#svm rbf model)
+* [Model Results](#model results)
 
 
 ## Background
