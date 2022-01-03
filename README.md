@@ -35,7 +35,7 @@ In this classification analysis, we will be using a preprocessed version of the 
 ## Model Preprocessing
 Now that are dataset is ready for model building, we split the dataset into train and test set. 
 The testing set will be used for model evaluation after the tuning process.
-```{r}
+```r
 set.seed(123)
 split = initial_split(df,prop = 0.7)
 train_data = training(split)
@@ -50,7 +50,7 @@ Highly correlated features are removed because we don't want multicollinearity i
 
 Scaling is done so that distance based methods don't produce biased results
 
-```
+```r
 dat_recipe = recipe(class~.,data=train_data) %>% 
                      step_nzv(all_predictors()) %>% 
                         step_corr(all_numeric(),-all_outcomes()) %>% 
@@ -62,7 +62,7 @@ dat_recipe = recipe(class~.,data=train_data) %>%
 
 Now that the data is preprocessed, we set up the folds.
 
-```
+```r
 set.seed(123)
 my_folds = bake(dat_recipe,new_data = train_data) %>% vfold_cv(v=5)
 
@@ -72,7 +72,7 @@ With the defined folds, we can now start building some classifiers. In this sect
 
 ### XGB Example
 First, define the model and choose the paramaters to tune. Tunable paramaters depend on the engine used.
-```
+```r
 XGBoost_mod = boost_tree( mode = "classification",
                       engine = "xgboost",
                       mtry = tune(),
@@ -94,7 +94,7 @@ XGB_grid = grid_max_entropy(finalize(mtry(),train_data),
 
 Next, we define the work flow and use the tune_grid function to tune the parameters
 
-```
+```r
 XGB_wf = workflow() %>% add_recipe(dat_recipe) %>% add_model(XGBoost_mod)
 XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
                                   control = control_grid(save_pred=TRUE,save_workflow = TRUE),
@@ -103,7 +103,7 @@ XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
 ```
 
 To get the predictions, we need to finalize a model based on the "best" parameters that fits our needs then fit the split we initally created in the train-test split step
-```
+```r
 #choosing the best parameters based on the roc_auc metric
 best_XGB_params = XGB_tune_res %>% select_best(metric= "roc_auc")
 
@@ -115,7 +115,7 @@ final_XGB_fit  = final_XGB_mod %>% last_fit(split)
 ```
 
 With our final model, we can now collect the results and plot the roc_auc curve and confusion matrix
-```
+```r
 #collect our accuracy and roc_auc score
 final_XGB_fit %>% collect_metrics()
 
