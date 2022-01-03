@@ -9,13 +9,13 @@
    
 * [Background](#background)
 * [Visualizations](#visualizations)
-   * [Summary Statistics](#summary statistics)
+   * [Summary Statistics](#summary-statistics)
    * [Observations](#observations)
 * [Model-Preprocessing](#model-preprocessing)
-* [Model Building](#model building)
-   * [XGBoost Model](#xgboost model)
-   * [SVM RBF Model](#svm rbf model)
-* [Model Results](#model results)
+* [Model Building](#model-building)
+   * [XGBoost Model](#xgboost-model)
+   * [SVM RBF Model](#svm-rbf-model)
+* [Model Results](#model-results)
 
 
 ## Background
