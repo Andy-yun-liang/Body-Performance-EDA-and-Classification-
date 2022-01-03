@@ -26,12 +26,12 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ## Model Summary
 
-### Model performance summary
+From this table, we can see the LightGBM is the best classifier.
 
 | Model | ROC_AUC | Accuracy |
 | :---  | :---:    |  :---:  |
 | LightGBM   | 0.922    |  0.757|
-| XGB     | 0.921       |  0.751|
+| XGBoost    | 0.921       |  0.751|
 | Random Forest | 0.919 |0.749|
 |MLP Neural Net| 0.916|0.738| 
 |SVM RBF| 0.886| 0.704|
@@ -55,7 +55,7 @@ Scatterplot of blood pressure of male and female within the four classes: A, B, 
 Hexplot of blood pressure of the individuals in the database. It is observed that individuals with a lower blood pressure levels have a lower BMI.
 ![image](https://user-images.githubusercontent.com/95319198/147903680-e3b198e9-447e-463f-bd47-a6e8c9950ebd.png)
 
-Scatterplot of BMI versus excercises between men and women within the four classes. Men generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
+Scatterplot of BMI versus excercises between male and female within the four classes. Males generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
 https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
 
