@@ -29,6 +29,9 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ## Visualizations 
 
+Count of Female vs Male in the database. There are much more males in the database with a ratio of 2 male: 1 female.
+![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
+
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
@@ -38,7 +41,8 @@ Scatterplot of BMI versus excercises between men and women within the four class
 https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
 
-
+Hexplot of weight vs height by age. It is observed that most overweight individuals are mostly of young age (<30).
+![image](https://user-images.githubusercontent.com/95319198/147903280-0658e262-dd75-4a98-9b36-b18770b45f6f.png)
 
 
 ## Model Preprocessing
