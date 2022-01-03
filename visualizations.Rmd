@@ -1,0 +1,95 @@
+---
+title: "visualizations"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+
+#reading in the pre-preprocessed dataset
+```{r}
+data = read.csv("finalize_df.csv",sep = " ")
+
+head(data)
+```
+
+
+#bar plots
+```{r}
+data %>% mutate(gender = factor(gender)) %>% ggplot(aes(class)) + geom_bar(aes(fill=gender)) +ggtitle("Response Variable by Gender")
+```
+
+
+```{r}
+data %>% mutate(class = as.factor(class),gender = as.factor(gender)) %>% ggplot(aes(x=class,y=sit_ups)) + geom_bar(stat="identity",aes(fill=gender)) +ggtitle("Total Sit Ups by Gender and Class")
+```
+
+
+```{r}
+
+```
+
+
+
+
+
+#feature dataset
+```{r}
+features_data = data[,-c(2,12)] #12 is response variable and 2 is gender
+```
+
+#Renaming feature names for the plots
+```{r}
+feature_names = c("Age", "Height in cm", "Weight in kg", "Body Fat in %","Distolic Blood Pressure","Systolic Blood Pressure","Grip Force in kg","Seated Forward Bend in cm","Sit Ups in a row","Broad Jump in cm","BMI")
+```
+
+#Distribution plot for all features by gender
+```{r}
+for(i in 1:ncol(features_data)){
+  print(data %>% mutate(gender = as.factor(gender)) %>% ggplot(aes(features_data[,i],fill=gender)) + geom_density(alpha=.5) + xlab(feature_names[i]) + ggtitle(paste0("Density Plot of ",feature_names[i]," by Gender")))
+}
+
+```
+
+
+#Distribution plot for all features by response variable (class)
+```{r}
+for(i in 1:ncol(features_data)){
+  print(data %>% mutate(class = as.factor(class),gender = as.factor(gender)) %>% ggplot(aes(class,features_data[,i],fill = gender)) + geom_boxplot() + ylab(feature_names[i]) + ggtitle(paste0("Boxplot of ",feature_names[i]," by Class")))
+}
+```
+
+
+#gender by situps, broadjumps, seated bend, and gripforce 
+```{r}
+data %>% mutate(gender = as.factor(gender)) %>% 
+  pivot_longer(gripforce:broad_jump,names_to = "Exercise",values_to = "Val") %>%
+    ggplot(aes(Exercise,Val,fill=gender)) + geom_boxplot() 
+```
+
+```{r}
+library(thewitcher)
+```
+
+
+#height vs weight by age
+```{r}
+data %>% ggplot(aes(weight,height,z=age)) + stat_summary_hex(bins=60) + scale_fill_witcher(option="skellige") +labs(fill="age") +ggtitle("Weight vs Height by Age")
+
+#most of the overweight ppl are in younger than 30
+```
+
+
+#systolic diastolic bmi
+```{r}
+data %>% ggplot(aes(diastolic,systolic,z=bmi)) + stat_summary_hex(bins=60) + scale_fill_witcher(option="skellige") +labs(fill="bmi")
+```
+
+
+
+
+
+
