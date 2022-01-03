@@ -42,8 +42,13 @@ From this table, we can see the LightGBM is the best classifier.
 (CatBoost and Ensembles on progress..)
 
 ## Data Preprocessing
+After reading the dataset, we need to 
 1. Check if there's missing values, there's none
-2. Check if the data types are correct
+2. Check if there's duplicate observations
+```r
+df = df[!duplicated(df),]
+```
+3. Check if the data types are correct
       - the gender and class variable needs to be fixed
 ```r
 #gender from character to numeric where 0 represents females ane 1 represents males
@@ -52,7 +57,7 @@ df$gender = as.integer(as.factor(df$gender))-1
 #class from character to factor
 df$class = as.factor(df$class)
 ```
-3. Feature Engineer
+4. See if there's a meaningful variable we can introduce. (Feature Engineer)
 ```r
 #introduce BMI variables as it's a better metric to evaluate how healthy an individual is
 df$bmi = (df$weight/(df$height)^2)*10000
