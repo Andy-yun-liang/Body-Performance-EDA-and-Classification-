@@ -32,7 +32,7 @@ In this classification analysis, we will be using a preprocessed version of the 
 Count of Female vs Male in the database. There are much more males in the database with a ratio of 2 male: 1 female.
 ![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
 
-Gif that visualizes the type of blood pressure that the individuals in the dataset have. 
+Gif visualizing the type of blood pressure that individuals of a certain age in the dataset have. 
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
