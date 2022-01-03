@@ -14,7 +14,7 @@
    - [Feature-Engineer](#feature-engineer)
    - [Model-Preprocessing](#model-preprocessing)
    - [Model Building](#model-building)
-   - [Classification Results](#result)
+   - [Model Results](#result)
    
 
 
@@ -209,7 +209,7 @@ final_svmRBF_fit %>% collect_predictions(parameters = best_svmRBF_params) %>% ro
 
 To see the rest of the tuning process for the other models used, check the appendix!
 
-## Classification Results
+## Model Results
 
 | Model | ROC_AUC | Accuracy |
 | :---  | :---:    |  :---:  |
