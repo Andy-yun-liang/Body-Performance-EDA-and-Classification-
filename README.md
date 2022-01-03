@@ -37,12 +37,17 @@ Count of Female vs Male in the database. There are much more males in the databa
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
 ![image](https://user-images.githubusercontent.com/95319198/147901417-442ea446-0790-41be-94b7-7ec1fb62524a.png)
 
+Hexplot of blood pressure of the individuals in the database. It is observed that individuals with a lower blood pressure levels have a lower BMI.
+![image](https://user-images.githubusercontent.com/95319198/147903680-e3b198e9-447e-463f-bd47-a6e8c9950ebd.png)
+
 Scatterplot of BMI versus excercises between men and women within the four classes. Men generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
 https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
 
-Hexplot of weight vs height by age. It is observed that most overweight individuals are mostly of young age (<30).
+Hexplot of weight vs height by age. It is observed that most overweight individuals are of young age (<30).
 ![image](https://user-images.githubusercontent.com/95319198/147903280-0658e262-dd75-4a98-9b36-b18770b45f6f.png)
+
+![image](https://user-images.githubusercontent.com/95319198/147904317-20990382-c035-4078-b474-7a2baddb0ef2.png)
 
 
 ## Model Preprocessing
