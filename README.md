@@ -32,6 +32,7 @@ In this classification analysis, we will be using a preprocessed version of the 
 Count of Female vs Male in the database. There are much more males in the database with a ratio of 2 male: 1 female.
 ![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
 
+Gif that visualizes the type of blood pressure that the individuals in the dataset have. 
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
@@ -50,8 +51,8 @@ Hexplot of weight vs height by age. It is observed that most overweight individu
 Looking at these boxplots of the classes with each of the response variables, we can see that there is a lot of outliers. 
 ![image](https://user-images.githubusercontent.com/95319198/147904406-8b429693-df47-49eb-9943-a183ae006a59.png)
 
-
-
+Looking at distribution plots, we can see that a gaussian distribution. 
+![image](https://user-images.githubusercontent.com/95319198/147906919-6b88dcc8-4be1-4b38-8183-cbcc83a21d14.png)
 
 ## Model Preprocessing
 Now that are dataset is ready for model building, we split the dataset into train and test set. 
