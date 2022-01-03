@@ -9,7 +9,6 @@
    
 * [Background](#background)
 * [Model Summary](#model-summary)
-
 * [Visualizations](#visualizations)
 * [Model-Preprocessing](#model-preprocessing)
 * [Model Building](#model-building)
@@ -43,31 +42,45 @@ From this table, we can see the LightGBM is the best classifier.
 
 ## Visualizations 
 
-Count of Female vs Male in the database. There are much more males in the database with a ratio of 2 male: 1 female.
+we observe that there are more male than female participants
+
 ![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
 
-We can see that as we age, more individuals have blood pressure problems.
+
+We can see that as we age, individuals are more likely to have blood pressure problems.
+
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
+
 Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that men have a higher blood pressure than women.
+
 ![image](https://user-images.githubusercontent.com/95319198/147908733-3afb1bb0-044b-4237-88c6-5e260e372b88.png)
 
+
 Hexplot of blood pressure of the individuals in the database. It is observed that individuals with a lower blood pressure levels have a lower BMI.
+
 ![image](https://user-images.githubusercontent.com/95319198/147903680-e3b198e9-447e-463f-bd47-a6e8c9950ebd.png)
 
+
 Scatterplot of BMI versus excercises between male and female within the four classes. Males generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
+
 https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
 
-Hexplot of weight vs height by age. It is observed that most overweight individuals are of young age (<30).
+
+Hexplot of weight vs height by age. It is observed that most overweight individuals are of younger than 30 years of age.
+
 ![image](https://user-images.githubusercontent.com/95319198/147903280-0658e262-dd75-4a98-9b36-b18770b45f6f.png)
 
-Looking at these boxplots of the classes with each of the response variables, we can see that there is a lot of outliers. 
+
+Looking at these boxplots of the classes with each of the response variables, we can see that there is "outliers". 
+
 ![image](https://user-images.githubusercontent.com/95319198/147904406-8b429693-df47-49eb-9943-a183ae006a59.png)
 
-Looking at these distributions, we can see that all the variables follow a Gaussian distribution.
-![image](https://user-images.githubusercontent.com/95319198/147908177-93482efc-763a-4819-8490-9cfbda932616.png)
 
+Looking at these distributions, we can see that all the variables follow a Gaussian distribution.
+
+![image](https://user-images.githubusercontent.com/95319198/147908177-93482efc-763a-4819-8490-9cfbda932616.png)
 
 
 
