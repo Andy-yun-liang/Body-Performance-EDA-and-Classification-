@@ -42,14 +42,23 @@ From this table, we can see the LightGBM is the best classifier.
 (CatBoost and Ensembles on progress..)
 
 ## Data Preprocessing
-
+1. Check if there's missing values, there's none
+2. Check if the data types are correct
+      - the gender and class variable needs to be fixed
 ```r
+#gender from character to numeric where 0 represents females ane 1 represents males
+df$gender = as.integer(as.factor(df$gender))-1 
 
+#class from character to factor
+df$class = as.factor(df$class)
+```
+3. Feature Engineer
+```r
+#introduce BMI variables as it's a better metric to evaluate how healthy an individual is
+df$bmi = (df$weight/(df$height)^2)*10000
 ```
 
 ## Visualizations 
-Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
-
 
 we observe that there are more male than female participants
 ![image](https://user-images.githubusercontent.com/95319198/147903318-209a0be7-7e96-4567-b1cf-754d38afc4e2.png)
@@ -84,6 +93,7 @@ Looking at these distributions, we can see that all the variables follow a Gauss
 ![image](https://user-images.githubusercontent.com/95319198/147908177-93482efc-763a-4819-8490-9cfbda932616.png)
 
 
+Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
 
 ## Model Preprocessing
 Now that are dataset is ready for model building, we split the dataset into train and test set. 
