@@ -70,7 +70,7 @@ my_folds = bake(dat_recipe,new_data = train_data) %>% vfold_cv(v=5)
 
 With the defined folds, we can now start building some classifiers. In this section, I will give a run down of how these models are setup. 
 
-### XGB Example
+### XGBoost Example
 First, define the model and choose the paramaters to tune. Tunable paramaters depend on the engine used.
 ```r
 XGBoost_mod = boost_tree( mode = "classification",
@@ -130,6 +130,82 @@ final_XGB_fit %>% collect_predictions(parameters = best_XGB_params) %>% roc_curv
 ![xgb_roc_auc_plot](https://user-images.githubusercontent.com/73871814/147873777-6c46dcf6-eb72-487b-bc08-168a88ffac2d.PNG)
 
 ![xgb_confusion_mat](https://user-images.githubusercontent.com/73871814/147873785-a508759a-6620-4217-b578-89397cf828cd.PNG)
+
+
+### SVM RBF Example
+
+
+#SVM rbf model
+
+Initializing the model and the workflow
+```r
+svmRBF_mod =svm_rbf(mode = "classification",
+                    engine="kernlab",
+                    cost = tune(),
+                    rbf_sigma = tune())
+
+svmRBF_wf = workflow() %>% add_recipe(dat_recipe) %>% add_model(svmRBF_mod)
+```
+
+Setting up a default tune grid to get a baseline
+```r
+set.seed(123)
+svmRBF_tune_res = svmRBF_wf %>% tune_grid(resamples = my_folds,
+                                  control = control_grid(save_pred=TRUE),
+                                  grid = 20
+                                  )
+```
+
+Plotting the tuned parameters to see if the better parameters are on the edge or center.
+
+```r
+svmRBF_tune_res %>% collect_metrics() %>% filter(.metric == "roc_auc") %>%
+  pivot_longer(cost:rbf_sigma, values_to = "val",names_to = "params") %>%
+  ggplot(aes(val,mean,color = params)) + geom_point() + facet_wrap(~params,scales="free_x")
+
+#Observation: we can see that lower cost values are preferred but can't really comment on the rbf_sigma parameter because there is a gap in data points
+```
+
+![svm_tune](https://user-images.githubusercontent.com/73871814/147897707-c3672bec-4cf0-44c2-a44a-fb544b8ecdc1.PNG)
+
+
+Adjusting the tuning grid based on our observation
+```r
+svmRBF_grid = expand.grid(cost = c(0.5,1,2,3,4),rbf_sigma = c(0,0.1,0.2,0.4,0.5,0.7))
+
+svmRBF_tune_res = svmRBF_wf %>% tune_grid(resamples = my_folds,
+                                  control = control_grid(save_pred=TRUE,save_workflow = TRUE),
+                                  grid = svmRBF_grid 
+                                  )
+```
+
+Collect the best parameters and finalize the model and fit it to the test set
+```r
+best_svmRBF_params = svmRBF_tune_res %>% show_best(metric= "roc_auc")
+
+final_svmRBF_mod = svmRBF_wf %>% finalize_workflow(best_svmRBF_params[1,])
+
+final_svmRBF_fit  = final_svmRBF_mod %>% last_fit(split)
+```
+
+Collect the metrics from our finalize model and plot the roc_auc curve and confusion matrix
+```r
+#roc_auc and accuracy
+final_svmRBF_fit %>% collect_metrics()
+
+#auc plot of the test set
+final_svmRBF_fit %>% collect_predictions(parameters = best_svmRBF_params) %>% roc_curve(class,.pred_A:.pred_D) %>% autoplot()
+
+#get confusion matrix
+(svmRBFtest_preds = final_svmRBF_fit %>% collect_predictions() %>% conf_mat(truth = class, estimate = .pred_class))
+
+```
+![svm_metrics](https://user-images.githubusercontent.com/73871814/147897937-e0513537-0edb-4f6d-86bb-2a0356e6b099.PNG)
+
+![svm_rocauc_plot](https://user-images.githubusercontent.com/73871814/147897942-ce87f24f-66d4-4b32-b322-51eaa2b24ff7.PNG)
+
+![svm_conf_mat](https://user-images.githubusercontent.com/73871814/147897945-5e4c83d6-b3fc-41c3-b9aa-6abef9708b59.PNG)
+
 
 To see the rest of the tuning process for the other models used, check the appendix!
 
