@@ -97,13 +97,13 @@ Looking at these boxplots of the classes with each of the response variables, we
 Looking at these distributions, we can see that all the variables follow a Gaussian distribution.
 ![image](https://user-images.githubusercontent.com/95319198/147908177-93482efc-763a-4819-8490-9cfbda932616.png)
 
-Variables we need to be vary of are: systolic, diastolic, bodyfat, situps, broad_jump, and height. We will deal with the highly correlated variables with the recipe in the model preprocessing step.
+There are many variables we need to be vary of some of which are: systolic, diastolic, bodyfat, situps, broad_jump, and height. We will deal with the highly correlated variables with the recipe in the model preprocessing step.  
 ![image](https://user-images.githubusercontent.com/95319198/147912014-f1dd08c8-81b9-45f8-98c1-ed7968bb7f92.png)
 
 Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
 
 ## Model Preprocessing
-Now that are dataset is ready for model building, we split the dataset into train and test set. 
+Now that are dataset is ready for model building, we split the dataset into training and testing sets. 
 
 The testing set will be used for model evaluation after the tuning process.
 ```r
@@ -115,11 +115,11 @@ test_data = testing(split)
 
 In this step, we will be using tidymodel's recipe to remove low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1. This processed is applied to the train set, and the test set transformation that follow these procedure will be automatically applied when we use the predict function.
 
-1.Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
+1. Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
 
-2.Highly correlated features are removed because we don't want multicollinearity in the models even though some models such as the random forest is relatively resistant. Multicollinearity can make our model very variable because it increases the variance of feature's coefficients.
+2. Highly correlated features are removed because we don't want multicollinearity in the models even though some models such as the random forest is relatively resistant. Multicollinearity can make our model very variable because it increases the variance of feature's coefficients.
 
-3.Scaling is done so that distance based methods don't produce biased results
+3. Scaling is done so that distance based methods don't produce biased results
 
 ```r
 dat_recipe = recipe(class~.,data=train_data) %>% 
