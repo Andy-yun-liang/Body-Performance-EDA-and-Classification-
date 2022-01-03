@@ -31,6 +31,12 @@ In this classification analysis, we will be using a preprocessed version of the 
 
 ![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
 
+![image](https://user-images.githubusercontent.com/95319198/147901417-442ea446-0790-41be-94b7-7ec1fb62524a.png)
+
+![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
+
+
+
 
 ## Model Preprocessing
 Now that are dataset is ready for model building, we split the dataset into train and test set. 
