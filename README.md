@@ -11,6 +11,7 @@
 * [Model Summary](#model-summary)
 * [Data Preprocessing](#data-preprocessing)
 * [Visualizations](#visualizations)
+  * [Visualizations from Tableau](#visualizations-from-tableau)
 * [Model Preprocessing](#model-preprocessing)
 * [Model Building](#model-building)
    * [XGBoost Model](#xgboost-model)
@@ -71,40 +72,77 @@ Now that the data types are correct, we can start plotting some visualizations t
 df %>% mutate(gender = factor(gender)) %>% 
    ggplot(aes(class)) + geom_bar(aes(fill=gender)) + ggtitle("Response Variable by Gender and Class")
 ```
-From this plot, we see that there are more male than female participants and that the classes are balanced 
+From this plot, we see that there are more male than female participants in general and that the classes are balanced 
 ![response_var_by_gc](https://user-images.githubusercontent.com/73871814/147992729-b45cf772-099f-431e-978e-3a9fb43ca3ae.PNG)
 
+```r
+features_data = df[,-c(2,12)] #12 is response variable and 2 is gender
 
-We can see that as we age, individuals are more likely to have blood pressure problems.
-![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
+feature_names = c("age", "height in cm", "weight in kg", "body fat in %","distolic blood pressure","systolic blood pressure","grip force in kg","seated forward bend in cm","situps in a row","broad jump in cm","BMI")
+
+density_plot_list = list()
+
+for(i in 1:ncol(features_data)){
+
+   density_plot_list[[i]] = df %>% mutate(gender = as.factor(gender)) %>% 
+      ggplot(aes_string(features_data[,i],fill="gender")) + geom_density(alpha=.5) + xlab(feature_names[i]) + ggtitle(paste0("Density Plot of ",feature_names[i]," by gender")) 
+
+}
+
+grid.arrange(grobs = density_plot_list ,3)
+```
+We have a variety of different distributions, so we can use a box-cox transformation to normalize the distribution before outlier analysis.
+![rsz_feat_dist](https://user-images.githubusercontent.com/73871814/147995582-04e4504b-4cc5-4deb-bb60-e95d66971852.jpg)
 
 
-Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that male have a higher blood pressure than females.
-![image](https://user-images.githubusercontent.com/95319198/147908733-3afb1bb0-044b-4237-88c6-5e260e372b88.png)
+```r
+boxplot_list = list()
 
+for(i in 1:ncol(features_data)){
 
-Hexplot of blood pressure of the individuals in the database. It is observed that individuals with a lower blood pressure levels have a lower BMI.
+boxplot_list[[i]] = df %>% 
+      mutate(class = as.factor(class),gender = as.factor(gender)) %>%
+         ggplot(aes_string("class",features_data[,i],fill = "gender")) + geom_boxplot() + ylab(feature_names[i]) +      ggtitle(paste0("Boxplot of ",feature_names[i]," by class"))
+
+}
+
+grid.arrange(grobs = boxplot_list,3)
+```
+Looking at these boxplots of the classes with each of the response variables, we can see that there is a bunch of "outliers". 
+![Rplot](https://user-images.githubusercontent.com/73871814/147997065-48c4f197-a877-4599-9cbf-be4cf5a01e2d.png)
+
+```r
+corr = cor(df[,-c(2,12)])
+ggcorrplot(corr,hc.order = TRUE,
+  ggtheme = ggplot2::theme_dark(),colors = c("#d41945", "white", "#1eabb3")
+)
+```
+There are many highly correlated variables we need to be vary of such as: systolic and diastolic, bodyfat and situps, broad_jump and height, and more. We will remove the highly correlated variables in the recipe step during model preprocessing.  
+![image](https://user-images.githubusercontent.com/95319198/147912014-f1dd08c8-81b9-45f8-98c1-ed7968bb7f92.png)
+
+```r
+df %>% ggplot(aes(diastolic,systolic,z=bmi)) + stat_summary_hex(bins=60) + scale_fill_witcher(option="skellige") +labs(fill="bmi")
+```
+Individuals with a lower blood pressure levels have a lower BMI.
 ![image](https://user-images.githubusercontent.com/95319198/147903680-e3b198e9-447e-463f-bd47-a6e8c9950ebd.png)
 
+```r
+df %>% ggplot(aes(weight,height,z=age)) + stat_summary_hex(bins=60) + scale_fill_witcher(option="skellige") +labs(fill="age") +ggtitle("Weight vs Height by Age")
+```
+Most of the overweight individuals are younger than 30 years of age.
+![image](https://user-images.githubusercontent.com/95319198/147903280-0658e262-dd75-4a98-9b36-b18770b45f6f.png)
+
+## Visualizations from Tableau
+
+This gif shows that as individuals age, they are more likely to have blood pressure problems.
+![pogger_bp_gif](https://user-images.githubusercontent.com/95319198/147901343-6afbc86f-6b48-47ef-9980-87713a4918d0.gif)
+
+Scatterplot of blood pressure of male and female within the four classes: A, B, C, and D. It is observed that males in general have a higher blood pressure than females.
+![image](https://user-images.githubusercontent.com/95319198/147908733-3afb1bb0-044b-4237-88c6-5e260e372b88.png)
 
 Scatterplot of BMI versus excercises between male and female within the four classes. Males generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
 https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
-
-
-Hexplot of weight vs height by age. It is observed that most overweight individuals are of younger than 30 years of age.
-![image](https://user-images.githubusercontent.com/95319198/147903280-0658e262-dd75-4a98-9b36-b18770b45f6f.png)
-
-
-Looking at these boxplots of the classes with each of the response variables, we can see that there is "outliers". 
-![image](https://user-images.githubusercontent.com/95319198/147904406-8b429693-df47-49eb-9943-a183ae006a59.png)
-
-
-Looking at these distributions, we can see that all the variables follow a Gaussian distribution.
-![image](https://user-images.githubusercontent.com/95319198/147908177-93482efc-763a-4819-8490-9cfbda932616.png)
-
-There are many variables we need to be vary of such as: systolic and diastolic, bodyfat and situps, broad_jump and height, and more. We will deal with the highly correlated variables with the recipe in the model preprocessing step.  
-![image](https://user-images.githubusercontent.com/95319198/147912014-f1dd08c8-81b9-45f8-98c1-ed7968bb7f92.png)
 
 Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
 
