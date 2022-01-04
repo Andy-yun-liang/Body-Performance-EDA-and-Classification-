@@ -21,7 +21,7 @@
 
 The objective of this project is to become more comfortable with multi-label classification with the tidymodels framework in R(Rstudio) and data visualization with the ggplot2 package and Tableau.
 
-The body performance dataset is gathered by Seoul Olympic Commemorative Sports Promotion Agency and maintained by the Nationl Sports Promotion Agency, it can be found on https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=ace0aea7-5eee-48b9-b616-637365d665c1. 
+The body performance dataset is gathered by Seoul Olympic Commemorative Sports Promotion Agency and maintained by the Nationl Sports Promotion Agency, it can be found at https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=ace0aea7-5eee-48b9-b616-637365d665c1. 
 
 In this classification analysis, we will be using a preprocessed version of the dataset found on https://www.kaggle.com/kukuroo3/body-performance-data.
 
@@ -43,13 +43,19 @@ From this table, we can see the LightGBM is the best classifier.
 (CatBoost and Ensembles on progress..)
 
 ## Data Preprocessing
-After reading the dataset, we need to 
-1. check if there's missing values, there's none
-2. check if there's duplicate observations
+After reading the dataset, we need to:
+1. check if there's missing values. (There's none)
+```
+for(i in 1:ncol(df)){
+   print(sum(is.na(df[,i]))==0))
+   }
+```
+
+2. check if there's duplicate observations.
 ```r
 df = df[!duplicated(df),]
 ```
-3. check if the data types are correct
+3. check if the data types are correct.
       - the gender and class variable needs to be fixed
 ```r
 #gender from character to numeric where 0 represents females ane 1 represents males
@@ -66,13 +72,13 @@ df$bmi = (df$weight/(df$height)^2)*10000
 
 ## Visualizations 
 
-Now that the data types are correct, we can start plotting some visualizations to better understand the dataset
+Now that the data types are correct, we can start plotting some visualizations to better understand the dataset.
 
 ```r
 df %>% mutate(gender = factor(gender)) %>% 
    ggplot(aes(class)) + geom_bar(aes(fill=gender)) + ggtitle("Response Variable by Gender and Class")
 ```
-From this plot, we see that there are more male than female participants in general and that the classes are balanced 
+From this plot, we see that there are more male than female participants in general and that the classes are balanced.
 ![response_var_by_gc](https://user-images.githubusercontent.com/73871814/147992729-b45cf772-099f-431e-978e-3a9fb43ca3ae.PNG)
 
 ```r
@@ -147,7 +153,7 @@ https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
 Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
 
 ## Model Preprocessing
-Now that are dataset is ready for model building, we split the dataset into training and testing sets. 
+Now that our dataset is ready for model building, we split the dataset into training and testing sets. 
 
 The testing set will be used for model evaluation after the tuning process.
 ```r
@@ -159,11 +165,11 @@ test_data = testing(split)
 
 In this step, we will be using tidymodel's recipe to remove low variance features and highly correlated features. Then scaled the predictor variables to mean 0 and standard deviation of 1. This processed is applied to the train set, and the test set transformation that follow these procedure will be automatically applied when we use the predict function.
 
-1. Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable
+1. Low variance features are removed because we don't want features that are constant and do not have any impact on the response variable.
 
 2. Highly correlated features are removed because we don't want multicollinearity in the models even though some models such as the random forest is relatively resistant. Multicollinearity can make our model very variable because it increases the variance of feature's coefficients.
 
-3. Scaling is done so that distance based methods don't produce biased results
+3. Scaling is done so that distance based methods don't produce biased results.
 
 ```r
 dat_recipe = recipe(class~.,data=train_data) %>% 
@@ -207,7 +213,7 @@ XGB_grid = grid_max_entropy(finalize(mtry(),train_data),
                             size=25)
 ```
 
-Next, we define the work flow and use the tune_grid function to tune the parameters
+Next, we define the work flow and use the tune_grid function to tune the parameters.
 
 ```r
 XGB_wf = workflow() %>% add_recipe(dat_recipe) %>% add_model(XGBoost_mod)
@@ -217,7 +223,7 @@ XGB_tune_res = XGB_wf %>% tune_grid(resamples = my_folds,
                                   )
 ```
 
-To get the predictions, we need to finalize a model based on the "best" parameters that fits our needs then fit the split we initally created in the train-test split step
+To get the predictions, we need to finalize a model based on the "best" parameters that fits our needs then fit the split we initally created in the train-test split step.
 ```r
 #choosing the best parameters based on the roc_auc metric
 best_XGB_params = XGB_tune_res %>% select_best(metric= "roc_auc")
@@ -229,7 +235,7 @@ final_XGB_mod = XGB_wf %>% finalize_workflow(best_XGB_params)
 final_XGB_fit  = final_XGB_mod %>% last_fit(split)
 ```
 
-With our final model, we can now collect the results and plot the roc_auc curve and confusion matrix
+With our final model, we can now collect the results and plot the roc_auc curve and confusion matrix.
 ```r
 #collect our accuracy and roc_auc score
 final_XGB_fit %>% collect_metrics()
@@ -250,7 +256,7 @@ final_XGB_fit %>% collect_predictions(parameters = best_XGB_params) %>% roc_curv
 ### SVM RBF Model
 
 
-Initializing the model and the workflow
+Initializing the model and the workflow.
 ```r
 svmRBF_mod =svm_rbf(mode = "classification",
                     engine="kernlab",
@@ -260,7 +266,7 @@ svmRBF_mod =svm_rbf(mode = "classification",
 svmRBF_wf = workflow() %>% add_recipe(dat_recipe) %>% add_model(svmRBF_mod)
 ```
 
-Setting up a default tune grid to get a baseline
+Setting up a default tune grid to get a baseline.
 ```r
 set.seed(123)
 svmRBF_tune_res = svmRBF_wf %>% tune_grid(resamples = my_folds,
@@ -282,7 +288,7 @@ svmRBF_tune_res %>% collect_metrics() %>% filter(.metric == "roc_auc") %>%
 ![svm_tune](https://user-images.githubusercontent.com/73871814/147897707-c3672bec-4cf0-44c2-a44a-fb544b8ecdc1.PNG)
 
 
-Adjusting the tuning grid based on our observation
+Adjusting the tuning grid based on our observation.
 ```r
 svmRBF_grid = expand.grid(cost = c(0.5,1,2,3,4),rbf_sigma = c(0,0.1,0.2,0.4,0.5,0.7))
 
@@ -292,7 +298,7 @@ svmRBF_tune_res = svmRBF_wf %>% tune_grid(resamples = my_folds,
                                   )
 ```
 
-Collect the best parameters and finalize the model and fit it to the test set
+Collecting the best parameters and finalize the model and fitting it to the test set.
 ```r
 best_svmRBF_params = svmRBF_tune_res %>% show_best(metric= "roc_auc")
 
@@ -301,7 +307,7 @@ final_svmRBF_mod = svmRBF_wf %>% finalize_workflow(best_svmRBF_params[1,])
 final_svmRBF_fit  = final_svmRBF_mod %>% last_fit(split)
 ```
 
-Collect the metrics from our finalize model and plot the roc_auc curve and confusion matrix
+Collecting the metrics from our finalized model and plotting the roc_auc curve and confusion matrix.
 ```r
 #roc_auc and accuracy
 final_svmRBF_fit %>% collect_metrics()
