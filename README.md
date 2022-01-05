@@ -45,10 +45,14 @@ From this table, we can see the LightGBM is the best classifier.
 ## Data Preprocessing
 After reading the dataset, we need to:
 1. check if there's missing values. (There's none)
-```
+```r
 for(i in 1:ncol(df)){
    print(sum(is.na(df[,i]))==0))
    }
+
+#or just use the summary function
+
+summary(df)
 ```
 
 2. check if there's duplicate observations.
