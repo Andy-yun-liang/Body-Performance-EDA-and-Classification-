@@ -151,7 +151,8 @@ Scatterplot of blood pressure of male and female within the four classes: A, B, 
 ![image](https://user-images.githubusercontent.com/95319198/147908733-3afb1bb0-044b-4237-88c6-5e260e372b88.png)
 
 Scatterplot of BMI versus excercises between male and female within the four classes. Males generally perform better in all the excercises except for seated forward bend. Furthermore, individuals in class A outperform others of the same gender that are in the other classes. 
-https://public.tableau.com/authoring/Book5_16401395973610/Sheet2#1
+
+All of the Tableau visualizations can be found in this book: https://public.tableau.com/app/profile/alex6894/viz/BodyPerformanceDataVisualization/Sheet4 
 ![image](https://user-images.githubusercontent.com/95319198/147901459-a1ff1064-615d-43dd-b144-003efee2ab71.png)
 
 Based on the visualizations we can clearly see that the response variable is ordinal where A > B > C > D. However, due to the lack of algorithms that deal with ordinal classification we are going to treat the response variable as a nominal variable.
